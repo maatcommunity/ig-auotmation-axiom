@@ -1,4 +1,4 @@
 fileignoreconfig:
 - filename: ig_dm_automation.json
-  checksum: aaabdd7ecc7a45c37bb26e5e1489129ce8b145887f11bd3f3744c82bd93728f7
+  checksum: 62a2b619cf31d65fdfc37ecf3a12e7dd6d5121284829d3794a5c6e4c206cf2a2
 version: "1.0"

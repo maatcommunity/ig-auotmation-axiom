@@ -339,78 +339,6 @@
         "token": "all-interaction-data"
       },
       {
-        "description": "",
-        "hasErrors": false,
-        "helpvideo": "t5HAq5q5JJQ",
-        "highlighted": false,
-        "machine_name": "WidgetDeleteRowsFromGoogleSheet",
-        "metadata": "clear remove slice",
-        "method": {
-          "browser": "AxiomApiDeleteRowsFromGoogleSheet"
-        },
-        "modes": [
-          "browser"
-        ],
-        "name": "Profile",
-        "original_name": "Delete rows from a Google Sheet",
-        "params": [
-          {
-            "collapsible": 0,
-            "configurable": true,
-            "default_value": "",
-            "description": [
-              "Select a google sheet to delete from, or paste its URL here."
-            ],
-            "help": [],
-            "image": "",
-            "name": "Spreadsheet URL",
-            "sheetName": "IG DM automation",
-            "type": "spreadsheet_picker",
-            "value": "https://docs.google.com/spreadsheets/d/1x039ThUBcdzp7qsL8WVk3IuZo21h_pCiuaepEb1Qs8o"
-          },
-          {
-            "collapsible": 0,
-            "configurable": true,
-            "default_value": "1",
-            "description": [
-              "Enter the number of the first row to delete"
-            ],
-            "help": [],
-            "image": "",
-            "name": "First row to delete",
-            "type": "start_page",
-            "value": "1"
-          },
-          {
-            "collapsible": 0,
-            "configurable": true,
-            "default_value": "1",
-            "description": [
-              "Enter the number of the last row to delete. Everything between the first and last rows will also be deleted."
-            ],
-            "help": [],
-            "image": "",
-            "name": "Last row to delete",
-            "type": "page_count",
-            "value": "1"
-          },
-          {
-            "collapsible": 0,
-            "configurable": true,
-            "default_value": "",
-            "description": [
-              "Optionally specify a sheet name to delete from. Sheets are different tabs visible at the bottom of your google doc; enter the name that appears on the tab to specify the sheet. Leaving this blank will use the first sheet in the document."
-            ],
-            "help": [],
-            "image": "",
-            "name": "Sheet name",
-            "type": "sheet_name_dropdown",
-            "value": "Profiles"
-          }
-        ],
-        "token": ""
-      },
-      {
         "afterLoopUpdate": true,
         "description": "Interact with a web page by clicking and typing via its user interface.",
         "hasErrors": false,
@@ -1012,54 +940,10 @@
         "token": "all-interaction-data_1"
       },
       {
-        "description": "Jump to a different step, use to create branches and loops.",
-        "hasErrors": false,
-        "helpvideo": "",
-        "highlighted": false,
-        "machine_name": "WidgetAlwaysJump",
-        "metadata": "loop",
-        "method": {
-          "browser": "AxiomApiAlwaysJump"
-        },
-        "modes": [
-          "browser"
-        ],
-        "name": "Move to the next line",
-        "original_name": "Jump to another step",
-        "params": [
-          {
-            "collapsible": 0,
-            "configurable": true,
-            "default_value": "",
-            "description": [
-              "Enter the number of the step to jump to if the value is found. You cannot jump to sub steps, only whole steps."
-            ],
-            "help": [],
-            "image": "",
-            "name": "Jump to step",
-            "type": "integer",
-            "value": "1"
-          },
-          {
-            "collapsible": 0,
-            "configurable": true,
-            "default_value": "20",
-            "description": [
-              "Maximum number of times this step should trigger in a single run."
-            ],
-            "help": [],
-            "image": "",
-            "name": "Maximum cycles",
-            "type": "max_cycles",
-            "value": "50"
-          }
-        ],
-        "token": ""
-      },
-      {
         "description": "",
         "hasErrors": false,
         "helpvideo": "5HMq_5bZyIM",
+        "highlighted": false,
         "machine_name": "WidgetWriteGoogleSheet",
         "metadata": "spreadsheet",
         "method": {
@@ -1143,9 +1027,82 @@
         "token": ""
       },
       {
+        "description": "",
+        "hasErrors": false,
+        "helpvideo": "t5HAq5q5JJQ",
+        "highlighted": false,
+        "machine_name": "WidgetDeleteRowsFromGoogleSheet",
+        "metadata": "clear remove slice",
+        "method": {
+          "browser": "AxiomApiDeleteRowsFromGoogleSheet"
+        },
+        "modes": [
+          "browser"
+        ],
+        "name": "Profile",
+        "original_name": "Delete rows from a Google Sheet",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Select a google sheet to delete from, or paste its URL here."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Spreadsheet URL",
+            "sheetName": "IG DM automation",
+            "type": "spreadsheet_picker",
+            "value": "https://docs.google.com/spreadsheets/d/1x039ThUBcdzp7qsL8WVk3IuZo21h_pCiuaepEb1Qs8o"
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "1",
+            "description": [
+              "Enter the number of the first row to delete"
+            ],
+            "help": [],
+            "image": "",
+            "name": "First row to delete",
+            "type": "start_page",
+            "value": "1"
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "1",
+            "description": [
+              "Enter the number of the last row to delete. Everything between the first and last rows will also be deleted."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Last row to delete",
+            "type": "page_count",
+            "value": "1"
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Optionally specify a sheet name to delete from. Sheets are different tabs visible at the bottom of your google doc; enter the name that appears on the tab to specify the sheet. Leaving this blank will use the first sheet in the document."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Sheet name",
+            "type": "sheet_name_dropdown",
+            "value": "Profiles"
+          }
+        ],
+        "token": ""
+      },
+      {
         "description": "Jump to a different step, use to create branches and loops.",
         "hasErrors": false,
         "helpvideo": "",
+        "highlighted": false,
         "machine_name": "WidgetAlwaysJump",
         "metadata": "loop",
         "method": {
