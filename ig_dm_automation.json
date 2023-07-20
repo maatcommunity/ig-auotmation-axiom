@@ -1,1 +1,1220 @@
-{"id":420632,"openWidgetIndex":-1,"name":"IG DM Automation","templateId":0,"triggers":[],"share_status":"no","share_link":null,"data":{"context":[{"context":"url","url":""}],"continueOnError":false,"form":[{"description":"","hasErrors":false,"helpvideo":"V1laWs3B1j8","machine_name":"WidgetReadGoogleSheet","metadata":"spreadsheet","method":{"browser":"AxiomApiReadGoogleSheetWithRangeV3170"},"modes":["browser"],"name":"Read profile URL from Google Sheet","original_name":"Read data from Google Sheet","params":[{"collapsible":0,"configurable":true,"default_value":"","description":["Select a google sheet to read from, or paste its URL here."],"help":[],"image":"","name":"Spreadsheet","sheetName":"IG DM automation","type":"spreadsheet_picker","value":"https://docs.google.com/spreadsheets/d/1x039ThUBcdzp7qsL8WVk3IuZo21h_pCiuaepEb1Qs8o"},{"collapsible":0,"configurable":true,"default_value":"","description":["Optionally specify a sheet name to read from. Sheets are different tabs visible at the bottom of your google doc; enter the name that appears on the tab to specify the sheet. Leaving this blank will use the first sheet in the document."],"help":[],"image":"","name":"Sheet name","type":"sheet_name_dropdown","value":"Profiles"},{"collapsible":1,"configurable":true,"default_value":"A1","description":["Will use A1 if no value provided"],"help":[],"image":"","name":"First cell","toggled":true,"type":"first_cell","value":"A1"},{"collapsible":1,"configurable":true,"default_value":"ZZ","description":["Will use ZZ if no value provided"],"help":[],"image":"","name":"Last cell","toggled":true,"type":"last_cell","value":"B1"},{"collapsible":1,"configurable":true,"default_value":false,"description":["If this is turned on, the automation will proceed even if the input sheet is empty."],"help":[],"image":"","name":"Continue when empty","toggled":true,"type":"optional","value":true}],"token":"google-sheet-data"},{"description":"Check if data contains certain values; if it does, continue execution. Otherwise, stop.","hasErrors":false,"helpvideo":"haudnNFSZuQ","highlighted":false,"machine_name":"WidgetContinue","metadata":"if condition logic then","method":{"browser":"AxiomApiContinueV3140"},"modes":["browser"],"name":"Exit when no more found","original_name":"Continue only if a condition is met","params":[{"collapsible":0,"configurable":false,"default_value":[],"description":["Enter data to check for a value."],"help":[],"image":"","maxTokens":1,"name":"Data to check","tokenType":"","type":"token","value":"[google-sheet-data]"},{"collapsible":0,"configurable":true,"description":["Check data for either a list of words or if a javascript expression is true."],"help":[],"image":"","name":"Condition to check","type":"conditional_check","value":{"evaluateJavascript":false,"matchMode":"any","wordBoundary":false,"words":""}},{"collapsible":0,"configurable":true,"default_value":"","description":["Tick this box to end the run with the 'Failed' status if the condition is not met. If this is left unchecked, the run will end in 'Success' instead."],"help":[],"image":"","name":"Fail if condition not met","type":"exact_match","value":""},{"collapsible":0,"configurable":true,"default_value":false,"description":["Continue if the condition is NOT met."],"help":[],"image":"","name":"Reverse condition","type":"reverse_condition","value":false}],"token":""},{"afterLoopUpdate":true,"description":"Interact with a web page by clicking and typing via its user interface.","hasErrors":false,"helpvideo":"","isLooping":true,"machine_name":"WidgetBotCreate","metadata":"click enter text ui bot type fill form data loop","method":{"driver":"DriverNoUrl"},"modes":["browser"],"name":"Browse to instagram DM tab","original_name":"Interact with a page's interface","params":[{"collapsible":0,"configurable":true,"description":[" "],"help":[],"image":"","name":"driverLaunchOptions","type":"","value":""},{"collapsible":0,"configurable":false,"description":["Repeat for each item in another step's data."],"help":[],"image":"","maxTokens":1,"name":"Loop through data","tokenType":"bot_token","type":"bot_token","value":"[google-sheet-data]"},{"collapsible":1,"configurable":true,"description":["Enter the time, in seconds, to show tooltips. Enter 0 for no tooltip."],"help":[],"image":"","name":"Show tooltips","type":"pause_time","value":"0"}],"token":"bot-input-data"},{"description":"Instruct the bot to go to a new page.","hasErrors":false,"helpvideo":"","highlighted":false,"machine_name":"WidgetDriverGoto","metadata":"","method":{"driver":"driver.gotoV3180"},"modes":["driver"],"name":"Go to page","original_name":"Go to page","params":[{"collapsible":0,"configurable":true,"description":["Enter a URL to go to. You can also plugin data from other steps to provide a URL. Enter (skip) to skip this step."],"help":[],"image":"","name":"Enter URL","type":"current_url","value":"https://www.instagram.com/direct/inbox/"},{"collapsible":1,"configurable":true,"description":["Check the box to stop Axiom retrieving session data from this URL's localstorage. This will prevent an extra page refresh but can prevent your session from loading fully."],"help":[],"image":"","name":"Do not share localstorage","type":"special_character","value":false},{"collapsible":1,"configurable":true,"description":["Check the box to open the URL in a new browser tab, the automation will automatically switch to running in the new tab."],"help":[],"image":"","name":"Open in new tab","type":"special_character","value":false}],"token":""},{"description":"Instruct the bot to wait for the given number of milliseconds. Wait for loading events, animations, page rendering etc.","hasErrors":false,"helpvideo":"lwfmZQHFfAs","machine_name":"WidgetDriverWait","metadata":"","method":{"driver":"driver.wait"},"modes":["driver"],"name":"Wait","original_name":"Wait","params":[{"collapsible":0,"configurable":true,"default_value":"","description":[],"help":[],"image":"","name":"Set a time in milliseconds","type":"integer_required","value":"1500"}],"token":""},{"description":"Finish and trigger the bot's run!","hasErrors":false,"helpvideo":"","machine_name":"WidgetBotComplete","metadata":"","method":{"browser":"driver.internalRun"},"modes":["driver"],"name":"Finish Interact with the UI","original_name":"Finish Interact with the UI","params":[],"token":"all-interaction-data"},{"description":"","hasErrors":false,"helpvideo":"t5HAq5q5JJQ","highlighted":false,"machine_name":"WidgetDeleteRowsFromGoogleSheet","metadata":"clear remove slice","method":{"browser":"AxiomApiDeleteRowsFromGoogleSheet"},"modes":["browser"],"name":"Profile","original_name":"Delete rows from a Google Sheet","params":[{"collapsible":0,"configurable":true,"default_value":"","description":["Select a google sheet to delete from, or paste its URL here."],"help":[],"image":"","name":"Spreadsheet URL","sheetName":"IG DM automation","type":"spreadsheet_picker","value":"https://docs.google.com/spreadsheets/d/1x039ThUBcdzp7qsL8WVk3IuZo21h_pCiuaepEb1Qs8o"},{"collapsible":0,"configurable":true,"default_value":"1","description":["Enter the number of the first row to delete"],"help":[],"image":"","name":"First row to delete","type":"start_page","value":"1"},{"collapsible":0,"configurable":true,"default_value":"1","description":["Enter the number of the last row to delete. Everything between the first and last rows will also be deleted."],"help":[],"image":"","name":"Last row to delete","type":"page_count","value":"1"},{"collapsible":0,"configurable":true,"default_value":"","description":["Optionally specify a sheet name to delete from. Sheets are different tabs visible at the bottom of your google doc; enter the name that appears on the tab to specify the sheet. Leaving this blank will use the first sheet in the document."],"help":[],"image":"","name":"Sheet name","type":"sheet_name_dropdown","value":"Profiles"}],"token":""},{"afterLoopUpdate":true,"description":"Interact with a web page by clicking and typing via its user interface.","hasErrors":false,"helpvideo":"","isLooping":true,"machine_name":"WidgetBotCreate","metadata":"click enter text ui bot type fill form data loop","method":{"driver":"DriverNoUrl"},"modes":["browser"],"name":"Send a DM","original_name":"Interact with a page's interface","params":[{"collapsible":0,"configurable":true,"description":[" "],"help":[],"image":"","name":"driverLaunchOptions","type":"","value":""},{"collapsible":0,"configurable":false,"description":["Repeat for each item in another step's data."],"help":[],"image":"","maxTokens":1,"name":"Loop through data","tokenType":"bot_token","type":"bot_token","value":"[google-sheet-data]"},{"collapsible":1,"configurable":true,"description":["Enter the time, in seconds, to show tooltips. Enter 0 for no tooltip."],"help":[],"image":"","name":"Show tooltips","type":"pause_time","value":"0"}],"token":"bot-input-data_1"},{"description":"Instruct the bot to click on a button, link, or any other clickable thing.","hasErrors":false,"helpvideo":"l0Md7spP5Gs","highlighted":false,"machine_name":"WidgetDriverClick","metadata":"right click rightclick","method":{"driver":"driver.clickV3130"},"modes":["driver"],"name":"Disable Notifications","original_name":"Click Element","params":[{"collapsible":0,"configurable":true,"default_value":"","description":["Click 'Select' to choose what the bot should click on."],"help":[{"linkSrc":"https://axiom.ai/docs/selector-tool.html#single-selector","linkText":"learn more","name":"Updated Single Selector Tool with new custom selector feature - "}],"image":"","name":"Select","type":"selector_single","value":{"class":"._a9--._a9_1","hierarchy":"div:nth-last-of-type(1) > button:nth-of-type(2)","id":"#","innerText":"Not Now","targetElement":"<button class='_a9-- _a9_1' tabindex='0'>Not Now</button>","targetParent":"<div class='_a9-z'><button class='_a9-- _a9_0' tabindex='0'>Turn On</button><button class='_a9-- _a9_1' tabindex='0'>Not Now</button></div>"}},{"collapsible":0,"configurable":true,"default_value":false,"description":["Toggle off to perform a left click; toggle on to perform a right click."],"help":[],"image":null,"name":"Left click | Right click","type":"toggle","value":false},{"collapsible":0,"configurable":true,"default_value":false,"description":["If checked & the selected element is not present on the page the automation will continue without an error."],"help":[],"image":null,"name":"Optional click","type":"optional","value":true}],"token":""},{"description":"Instruct the bot to click on a button, link, or any other clickable thing.","hasErrors":false,"helpvideo":"","highlighted":false,"machine_name":"WidgetDriverClick","metadata":"right click rightclick","method":{"driver":"driver.clickV3130"},"modes":["driver"],"name":"Send message","original_name":"Click Element","params":[{"collapsible":0,"configurable":true,"default_value":"","description":["Click 'Select' to choose what the bot should click on."],"help":[{"linkSrc":"https://axiom.ai/docs/selector-tool.html#single-selector","linkText":"learn more","name":"Updated Single Selector Tool with new custom selector feature - "}],"image":"","name":"Select","type":"selector_single","value":{"class":".x1i10hfl.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x972fbf.xcfux6l.x1qhh985.xm0m39n.xdl72j9.x2lah0s.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x2lwn1j.xeuugli.xexx8yu.x18d9i69.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x1lku1pv.x1a2a7pz.x6s0dn4.xjyslct.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x1ejq31n.xd10rxx.x1sy0etr.x17r0tee.x9f619.x9bdzbf.x1ypdohk.x78zum5.x1i0vuye.x1f6kntn.xwhw2v2.x10w6t97.xl56j7k.x17ydfre.x1swvt13.x1pi30zi.x1n2onr6.x2b8uid.xlyipyv.x87ps6o.x14atkfc.x1d5wrs8.x1tu34mt.xzloghq","hierarchy":"section > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div > div > div:nth-last-of-type(1) > div","id":"#","innerText":"Send message","innerTextOnly":true,"targetElement":"<div class='x1i10hfl xjqpnuy xa49m3k xqeqjp1 x2hbi6w x972fbf xcfux6l x1qhh985 xm0m39n xdl72j9 x2lah0s xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r x2lwn1j xeuugli xexx8yu x18d9i69 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1q0g3np x1lku1pv x1a2a7pz x6s0dn4 xjyslct x1lq5wgf xgqcy7u x30kzoy x9jhf4c x1ejq31n xd10rxx x1sy0etr x17r0tee x9f619 x9bdzbf x1ypdohk x78zum5 x1i0vuye x1f6kntn xwhw2v2 x10w6t97 xl56j7k x17ydfre x1swvt13 x1pi30zi x1n2onr6 x2b8uid xlyipyv x87ps6o x14atkfc x1d5wrs8 x1tu34mt xzloghq axiom-matched axiom-sel-selected-0' role='button' tabindex='0'>Send message</div>","targetParent":"<div class='x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w x6s0dn4 x1cnzs8'><div class='x1i10hfl xjqpnuy xa49m3k xqeqjp1 x2hbi6w x972fbf xcfux6l x1qhh985 xm0m39n xdl72j9 x2lah0s xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r x2lwn1j xeuugli xexx8yu x18d9i69 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1q0g3np x1lku1pv x1a2a7pz x6s0dn4 xjyslct x1lq5wgf xgqcy7u x30kzoy x9jhf4c x1ejq31n xd10rxx x1sy0etr x17r0tee x9f619 x9bdzbf x1ypdohk x78zum5 x1i0vuye x1f6kntn xwhw2v2 x10w6t97 xl56j7k x17ydfre x1swvt13 x1pi30zi x1n2onr6 x2b8uid xlyipyv x87ps6o x14atkfc x1d5wrs8 x1tu34mt xzloghq axiom-matched axiom-sel-selected-0' role='button' tabindex='0'>Send message</div></div>"}},{"collapsible":0,"configurable":true,"default_value":false,"description":["Toggle off to perform a left click; toggle on to perform a right click."],"help":[],"image":null,"name":"Left click | Right click","type":"toggle","value":false},{"collapsible":0,"configurable":true,"default_value":false,"description":["If checked & the selected element is not present on the page the automation will continue without an error."],"help":[],"image":null,"name":"Optional click","type":"optional","value":false}],"token":""},{"description":"Instruct the bot to enter some text into a field.","hasErrors":false,"helpvideo":"","machine_name":"WidgetDriverEnterText","metadata":"","method":{"driver":"driver.enterText"},"modes":["driver"],"name":"Search name","original_name":"Enter Text","params":[{"collapsible":0,"configurable":false,"default_value":"","description":["Click 'Select' to choose the text field that the bot should enter text into. If you do not select a field, the bot will type into whatever is selected by default."],"help":[{"linkSrc":"https://axiom.ai/docs/selector-tool.html#single-selector","linkText":"learn more","name":"Updated Single Selector Tool with new custom selector feature - "}],"image":"h-text-field","name":"Select text field","type":"selector_single","value":{"class":".x1j8ye7u.x1rjkts5.x13z9klp.xjc6cxp.x5n08af.x1iyjqo2.xvs91rp.xklk4pu.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x1plvlek.xryxfnj.x1iorvi4.xn6708d.xjkvuk6.x1s3xk63.xlqc9nw.x8tigb1.x1ad04t7.x1glnyev.xs3hnx8.x7xwk5j.x1rheh84.x1ck6gwh.x175bfct.x1meze4m.x10eltez.x1qt4tve.x1s07b3s.xkq2eht.x1rvh84u.x11f1dot.xiga2ox.x1ii8w9m.x1serwwh.x178xt8z.xm81vs4.xso031l.xy80clv.x1ejq31n.xd10rxx.x1sy0etr.x17r0tee.x5ib6vp.xjbqb8w.xzd0ubt","hierarchy":"div:nth-of-type(2) > input","id":"#","innerText":"","targetElement":"<input autocomplete='off' class='x1j8ye7u x1rjkts5 x13z9klp xjc6cxp x5n08af x1iyjqo2 xvs91rp xklk4pu xdj266r x11i5rnm xat24cr x1mh8g0r x1plvlek xryxfnj x1iorvi4 xn6708d xjkvuk6 x1s3xk63 xlqc9nw x8tigb1 x1ad04t7 x1glnyev xs3hnx8 x7xwk5j x1rheh84 x1ck6gwh x175bfct x1meze4m x10eltez x1qt4tve x1s07b3s xkq2eht x1rvh84u x11f1dot xiga2ox x1ii8w9m x1serwwh x178xt8z xm81vs4 xso031l xy80clv x1ejq31n xd10rxx x1sy0etr x17r0tee x5ib6vp xjbqb8w xzd0ubt' placeholder='Search...' spellcheck='false' type='text' value='' name='queryBox' data-focus-visible-added=''>","targetParent":"<div class='x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x1uhb9sk x1plvlek xryxfnj x1iyjqo2 x2lwn1j xeuugli x1q0g3np x1a02dak xqjyukv x1qjc9v5 x1oa3qoh x1nhvcw1'><input autocomplete='off' class='x1j8ye7u x1rjkts5 x13z9klp xjc6cxp x5n08af x1iyjqo2 xvs91rp xklk4pu xdj266r x11i5rnm xat24cr x1mh8g0r x1plvlek xryxfnj x1iorvi4 xn6708d xjkvuk6 x1s3xk63 xlqc9nw x8tigb1 x1ad04t7 x1glnyev xs3hnx8 x7xwk5j x1rheh84 x1ck6gwh x175bfct x1meze4m x10eltez x1qt4tve x1s07b3s xkq2eht x1rvh84u x11f1dot xiga2ox x1ii8w9m x1serwwh x178xt8z xm81vs4 xso031l xy80clv x1ejq31n xd10rxx x1sy0etr x17r0tee x5ib6vp xjbqb8w xzd0ubt' placeholder='Search...' spellcheck='false' type='text' value='' name='queryBox' data-focus-visible-added=''><div></div></div>"}},{"collapsible":0,"configurable":true,"default_value":"","description":["Input the text to enter."],"help":[],"image":"h-text-input","name":"Text","type":"long_text","value":"[google-sheet-data?*&0]"},{"collapsible":1,"configurable":true,"default_value":"0","description":["Delay between each key press in miliseconds."],"help":[],"image":"h-text-input","name":"Delay","type":"delay","value":"0"}],"token":""},{"description":"Instruct the bot to click on a button, link, or any other clickable thing.","hasErrors":false,"helpvideo":"l0Md7spP5Gs","machine_name":"WidgetDriverClick","metadata":"right click rightclick","method":{"driver":"driver.clickV3130"},"modes":["driver"],"name":"Click Element: Select contact","original_name":"Click Element","params":[{"collapsible":0,"configurable":true,"default_value":"","description":["Click 'Select' to choose what the bot should click on."],"help":[{"linkSrc":"https://axiom.ai/docs/selector-tool.html#single-selector","linkText":"learn more","name":"Updated Single Selector Tool with new custom selector feature - "}],"image":"","name":"Select","type":"selector_single","value":{"class":".x1lliihq.x1n2onr6","hierarchy":"div:nth-of-type(3) > div > div > div:nth-of-type(1) > div > div > div:nth-last-of-type(1) > div > svg","id":"#","innerText":"Toggle selection","targetElement":"<svg aria-label='Toggle selection' class='x1lliihq x1n2onr6' color='rgb(245, 245, 245)' fill='rgb(245, 245, 245)' height='24' role='img' viewBox='0 0 24 24' width='24'><title>Toggle selection</title><circle cx='12.008' cy='12' fill='none' r='11.25' stroke='currentColor' stroke-linejoin='round' stroke-width='1.5' class=''></circle></svg>","targetParent":"<div class='x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x16n37ib x1uhb9sk x1plvlek xryxfnj x1c4vz4f xs83m0k x1q0g3np xqjyukv x1qjc9v5 x1oa3qoh x1nhvcw1'><svg aria-label='Toggle selection' class='x1lliihq x1n2onr6' color='rgb(245, 245, 245)' fill='rgb(245, 245, 245)' height='24' role='img' viewBox='0 0 24 24' width='24'><title>Toggle selection</title><circle cx='12.008' cy='12' fill='none' r='11.25' stroke='currentColor' stroke-linejoin='round' stroke-width='1.5' class=''></circle></svg></div>"}},{"collapsible":0,"configurable":true,"default_value":false,"description":["Toggle off to perform a left click; toggle on to perform a right click."],"help":[],"image":null,"name":"Left click | Right click","type":"toggle","value":false},{"collapsible":0,"configurable":true,"default_value":false,"description":["If checked & the selected element is not present on the page the automation will continue without an error."],"help":[],"image":null,"name":"Optional click","type":"optional","value":false}],"token":""},{"description":"Instruct the bot to click on a button, link, or any other clickable thing.","hasErrors":false,"helpvideo":"l0Md7spP5Gs","machine_name":"WidgetDriverClick","metadata":"right click rightclick","method":{"driver":"driver.clickV3130"},"modes":["driver"],"name":"Chat","original_name":"Click Element","params":[{"collapsible":0,"configurable":true,"default_value":"","description":["Click 'Select' to choose what the bot should click on."],"help":[{"linkSrc":"https://axiom.ai/docs/selector-tool.html#single-selector","linkText":"learn more","name":"Updated Single Selector Tool with new custom selector feature - "}],"image":"","name":"Select","type":"selector_single","value":{"class":".x1i10hfl.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x972fbf.xcfux6l.x1qhh985.xm0m39n.xdl72j9.x2lah0s.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x2lwn1j.xeuugli.xexx8yu.x18d9i69.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x1lku1pv.x1a2a7pz.x6s0dn4.xjyslct.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x1ejq31n.xd10rxx.x1sy0etr.x17r0tee.x9f619.x9bdzbf.x1ypdohk.x78zum5.x1i0vuye.x1f6kntn.xwhw2v2.xl56j7k.x17ydfre.x1n2onr6.x2b8uid.xlyipyv.x87ps6o.x14atkfc.x1d5wrs8.xn3w4p2.x5ib6vp.xc73u3c.x1tu34mt.xzloghq","hierarchy":"div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > div > div > div > div > div > div > div:nth-of-type(1) > div > div:nth-last-of-type(1) > div","id":"#","innerText":"Chat","targetElement":"<div class='x1i10hfl xjqpnuy xa49m3k xqeqjp1 x2hbi6w x972fbf xcfux6l x1qhh985 xm0m39n xdl72j9 x2lah0s xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r x2lwn1j xeuugli xexx8yu x18d9i69 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1q0g3np x1lku1pv x1a2a7pz x6s0dn4 xjyslct x1lq5wgf xgqcy7u x30kzoy x9jhf4c x1ejq31n xd10rxx x1sy0etr x17r0tee x9f619 x9bdzbf x1ypdohk x78zum5 x1i0vuye x1f6kntn xwhw2v2 xl56j7k x17ydfre x1n2onr6 x2b8uid xlyipyv x87ps6o x14atkfc x1d5wrs8 xn3w4p2 x5ib6vp xc73u3c x1tu34mt xzloghq' role='button' tabindex='0'>Chat</div>","targetParent":"<div class='x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh xw7yly9 xktsk01 x1yztbdb x1d52u69 x1uhb9sk x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x1qjc9v5 x1oa3qoh x1nhvcw1'><div class='x1i10hfl xjqpnuy xa49m3k xqeqjp1 x2hbi6w x972fbf xcfux6l x1qhh985 xm0m39n xdl72j9 x2lah0s xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r x2lwn1j xeuugli xexx8yu x18d9i69 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1q0g3np x1lku1pv x1a2a7pz x6s0dn4 xjyslct x1lq5wgf xgqcy7u x30kzoy x9jhf4c x1ejq31n xd10rxx x1sy0etr x17r0tee x9f619 x9bdzbf x1ypdohk x78zum5 x1i0vuye x1f6kntn xwhw2v2 xl56j7k x17ydfre x1n2onr6 x2b8uid xlyipyv x87ps6o x14atkfc x1d5wrs8 xn3w4p2 x5ib6vp xc73u3c x1tu34mt xzloghq' role='button' tabindex='0'>Chat</div></div>"}},{"collapsible":0,"configurable":true,"default_value":false,"description":["Toggle off to perform a left click; toggle on to perform a right click."],"help":[],"image":null,"name":"Left click | Right click","type":"toggle","value":false},{"collapsible":0,"configurable":true,"default_value":false,"description":["If checked & the selected element is not present on the page the automation will continue without an error."],"help":[],"image":null,"name":"Optional click","type":"optional","value":false}],"token":""},{"description":"Instruct the bot to enter some text into a field.","hasErrors":false,"helpvideo":"5Tann3v3SaE","machine_name":"WidgetDriverEnterText","metadata":"","method":{"driver":"driver.enterTextV3160"},"modes":["driver"],"name":"Send Message","original_name":"Enter Text","params":[{"collapsible":0,"configurable":false,"default_value":"","description":["Click 'Select' to choose the text field that the bot should enter text into. If you do not select a field, the bot will type into whatever is selected by default."],"help":[{"linkSrc":"https://axiom.ai/docs/selector-tool.html#single-selector","linkText":"learn more","name":"Updated Single Selector Tool with new custom selector feature - "}],"image":"h-text-field","name":"Select text field","type":"selector_single","value":{"class":".xat24cr.xdj266r","hierarchy":"div:nth-of-type(2) > div > div:nth-of-type(1) > p","id":"#","innerText":"","targetElement":"<p class='xat24cr xdj266r'><br></p>","targetParent":"<div aria-describedby='Message' aria-label='Message' class='xzsf02u x1a2a7pz x1n2onr6 x14wi4xw x1iyjqo2 x1gh3ibb xisnujt xeuugli x1odjw0f notranslate' contenteditable='true' role='textbox' spellcheck='true' tabindex='0' style='user-select: text; white-space: pre-wrap; word-break: break-word;' data-lexical-editor='true'><p class='xat24cr xdj266r'><br></p></div>"}},{"collapsible":0,"configurable":true,"default_value":"","description":["Input the text to enter."],"help":[],"image":"h-text-input","name":"Text","type":"long_text_required","value":"[google-sheet-data?*&1]"},{"collapsible":1,"configurable":true,"default_value":"0","description":["Delay between each key press in miliseconds."],"help":[],"image":"h-text-input","name":"Delay","type":"delay","value":"0"},{"collapsible":1,"configurable":true,"default_value":false,"description":["Toggle on to skip clearing the text before entering. The value will be appended to whatever is already in the box."],"help":[],"image":"","name":"Append to existing","type":"optional","value":false},{"collapsible":1,"configurable":true,"default_value":[],"description":["Record a sequence of characters to use instead of enter for line breaks. For example, record shift and enter for Instagram DMs."],"help":[],"image":"","name":"Custom line break","type":"select_key","value":[]}],"token":""},{"description":"Record a key press for the bot to execute. Multiple keys can be pressed at once.","hasErrors":false,"helpvideo":"dl4jSmjNThc","machine_name":"WidgetDriverKeyDown","metadata":"","method":{"driver":"driver.keydownV3120"},"modes":["driver"],"name":"Press Key(s)","original_name":"Press Key(s)","params":[{"collapsible":0,"configurable":true,"default_value":["Enter"],"description":["Click record, then press the keys you want the bot to press. You can record a sequence of keys.","The bot will enter these one by one, except for Ctrl, Alt, or Shift, which will be held down until the end of the sequence."],"help":[],"image":"","name":"Key","type":"select_key","value":["Enter"]},{"collapsible":0,"configurable":false,"default_value":[],"description":["The contents of the data will be entered as key presses (optional). This overwrites any recorded sequence."],"help":[],"image":"","maxTokens":1,"name":"Data","tokenType":"bot_token","type":"bot_token","value":[]},{"collapsible":0,"configurable":true,"default_value":"||","description":["When using data, use this character to seperate individual key presses. Make sure this is present between each desired key press in the given data, or this step will not work properly."],"help":[],"image":"","name":"Delimiter","type":"textfield","value":"||"},{"collapsible":1,"configurable":true,"default_value":"10","description":["Set a delay between each key press (in milliseconds)."],"help":[],"image":"","name":"Delay","type":"integer","value":"10"}],"token":""},{"description":"Finish and trigger the bot's run!","hasErrors":false,"helpvideo":"","machine_name":"WidgetBotComplete","metadata":"","method":{"browser":"driver.internalRun"},"modes":["driver"],"name":"Finish Interact with the UI","original_name":"Finish Interact with the UI","params":[],"token":"all-interaction-data_1"},{"description":"Jump to a different step, use to create branches and loops.","hasErrors":false,"helpvideo":"","highlighted":false,"machine_name":"WidgetAlwaysJump","metadata":"loop","method":{"browser":"AxiomApiAlwaysJump"},"modes":["browser"],"name":"Move to the next line","original_name":"Jump to another step","params":[{"collapsible":0,"configurable":true,"default_value":"","description":["Enter the number of the step to jump to if the value is found. You cannot jump to sub steps, only whole steps."],"help":[],"image":"","name":"Jump to step","type":"integer","value":"1"},{"collapsible":0,"configurable":true,"default_value":"20","description":["Maximum number of times this step should trigger in a single run."],"help":[],"image":"","name":"Maximum cycles","type":"max_cycles","value":"50"}],"token":""},{"description":"","hasErrors":false,"helpvideo":"5HMq_5bZyIM","machine_name":"WidgetWriteGoogleSheet","metadata":"spreadsheet","method":{"browser":"AxiomApiUpdateGoogleSheetV3160"},"modes":["browser"],"name":"Sent","original_name":"Write data to a Google Sheet","params":[{"collapsible":0,"configurable":true,"default_value":"","description":["Select a google sheet to write to, or paste its URL here."],"help":[],"image":"","name":"Spreadsheet","sheetName":"IG DM automation","type":"spreadsheet_picker","value":"https://docs.google.com/spreadsheets/d/1x039ThUBcdzp7qsL8WVk3IuZo21h_pCiuaepEb1Qs8o"},{"collapsible":0,"configurable":true,"description":["Leave blank to use the first sheet."],"help":[],"image":"","name":"Sheet name","type":"sheet_name_dropdown","value":"Sent"},{"collapsible":0,"configurable":false,"description":["Select the data to write"],"help":[],"image":"","maxTokens":1,"name":"DATA","tokenType":"","type":"token","value":"[google-sheet-data]"},{"collapsible":0,"configurable":true,"description":[""],"help":[],"image":"","name":"Write options","type":"google_sheet_write_options","value":{"append":true,"startingCell":""}},{"collapsible":1,"configurable":true,"default_value":"raw","description":["Select \"User Entered\" if you want to write formulas to the sheet."],"help":[],"image":null,"name":"Write method","type":"radio_value_input_option","value":"raw"}],"token":""},{"description":"Jump to a different step, use to create branches and loops.","hasErrors":false,"helpvideo":"","machine_name":"WidgetAlwaysJump","metadata":"loop","method":{"browser":"AxiomApiAlwaysJump"},"modes":["browser"],"name":"Move to the next line","original_name":"Jump to another step","params":[{"collapsible":0,"configurable":true,"default_value":"","description":["Enter the number of the step to jump to if the value is found. You cannot jump to sub steps, only whole steps."],"help":[],"image":"","name":"Jump to step","type":"integer","value":"1"},{"collapsible":0,"configurable":true,"default_value":"20","description":["Maximum number of times this step should trigger in a single run."],"help":[],"image":"","name":"Maximum cycles","type":"max_cycles","value":"50"}],"token":""}],"headless":false,"injector":{"injector":"dom","magic_btn_status":true,"selector":""},"mode":"browser","noOutput":false,"notifications":false,"templateItem":{"description":"Using a Google Sheet of Instagram users, send a personalised DM to each user and like their most recent post. Run this bot to increase engagement on your account.","difficulty":"Medium","machine_name":"TemplateStore16","modes":["browser"],"name":"DM Instagram users and like their newest post","recipe_id":16,"time":"4 minutes"},"templateMode":false,"templateStarted":true,"tokens":null,"viewport":null},"machine_name":"new_axiom","errors":[],"color":null,"creator_id":92722,"type":null}
+{
+  "id": 420632,
+  "openWidgetIndex": -1,
+  "name": "IG DM Automation",
+  "templateId": 0,
+  "triggers": [],
+  "share_status": "no",
+  "share_link": null,
+  "data": {
+    "context": [
+      {
+        "context": "url",
+        "url": ""
+      }
+    ],
+    "continueOnError": false,
+    "form": [
+      {
+        "description": "",
+        "hasErrors": false,
+        "helpvideo": "V1laWs3B1j8",
+        "machine_name": "WidgetReadGoogleSheet",
+        "metadata": "spreadsheet",
+        "method": {
+          "browser": "AxiomApiReadGoogleSheetWithRangeV3170"
+        },
+        "modes": [
+          "browser"
+        ],
+        "name": "Read profile URL from Google Sheet",
+        "original_name": "Read data from Google Sheet",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Select a google sheet to read from, or paste its URL here."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Spreadsheet",
+            "sheetName": "IG DM automation",
+            "type": "spreadsheet_picker",
+            "value": "https://docs.google.com/spreadsheets/d/1x039ThUBcdzp7qsL8WVk3IuZo21h_pCiuaepEb1Qs8o"
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Optionally specify a sheet name to read from. Sheets are different tabs visible at the bottom of your google doc; enter the name that appears on the tab to specify the sheet. Leaving this blank will use the first sheet in the document."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Sheet name",
+            "type": "sheet_name_dropdown",
+            "value": "Profiles"
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "default_value": "A1",
+            "description": [
+              "Will use A1 if no value provided"
+            ],
+            "help": [],
+            "image": "",
+            "name": "First cell",
+            "toggled": true,
+            "type": "first_cell",
+            "value": "A1"
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "default_value": "ZZ",
+            "description": [
+              "Will use ZZ if no value provided"
+            ],
+            "help": [],
+            "image": "",
+            "name": "Last cell",
+            "toggled": true,
+            "type": "last_cell",
+            "value": "B1"
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "default_value": false,
+            "description": [
+              "If this is turned on, the automation will proceed even if the input sheet is empty."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Continue when empty",
+            "toggled": true,
+            "type": "optional",
+            "value": true
+          }
+        ],
+        "token": "google-sheet-data"
+      },
+      {
+        "description": "Check if data contains certain values; if it does, continue execution. Otherwise, stop.",
+        "hasErrors": false,
+        "helpvideo": "haudnNFSZuQ",
+        "highlighted": false,
+        "machine_name": "WidgetContinue",
+        "metadata": "if condition logic then",
+        "method": {
+          "browser": "AxiomApiContinueV3140"
+        },
+        "modes": [
+          "browser"
+        ],
+        "name": "Exit when no more found",
+        "original_name": "Continue only if a condition is met",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": false,
+            "default_value": [],
+            "description": [
+              "Enter data to check for a value."
+            ],
+            "help": [],
+            "image": "",
+            "maxTokens": 1,
+            "name": "Data to check",
+            "tokenType": "",
+            "type": "token",
+            "value": "[google-sheet-data]"
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "description": [
+              "Check data for either a list of words or if a javascript expression is true."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Condition to check",
+            "type": "conditional_check",
+            "value": {
+              "evaluateJavascript": false,
+              "matchMode": "any",
+              "wordBoundary": false,
+              "words": ""
+            }
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Tick this box to end the run with the 'Failed' status if the condition is not met. If this is left unchecked, the run will end in 'Success' instead."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Fail if condition not met",
+            "type": "exact_match",
+            "value": ""
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": false,
+            "description": [
+              "Continue if the condition is NOT met."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Reverse condition",
+            "type": "reverse_condition",
+            "value": false
+          }
+        ],
+        "token": ""
+      },
+      {
+        "afterLoopUpdate": true,
+        "description": "Interact with a web page by clicking and typing via its user interface.",
+        "hasErrors": false,
+        "helpvideo": "",
+        "isLooping": true,
+        "machine_name": "WidgetBotCreate",
+        "metadata": "click enter text ui bot type fill form data loop",
+        "method": {
+          "driver": "DriverNoUrl"
+        },
+        "modes": [
+          "browser"
+        ],
+        "name": "Browse to instagram DM tab",
+        "original_name": "Interact with a page's interface",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "description": [
+              " "
+            ],
+            "help": [],
+            "image": "",
+            "name": "driverLaunchOptions",
+            "type": "",
+            "value": ""
+          },
+          {
+            "collapsible": 0,
+            "configurable": false,
+            "description": [
+              "Repeat for each item in another step's data."
+            ],
+            "help": [],
+            "image": "",
+            "maxTokens": 1,
+            "name": "Loop through data",
+            "tokenType": "bot_token",
+            "type": "bot_token",
+            "value": "[google-sheet-data]"
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "description": [
+              "Enter the time, in seconds, to show tooltips. Enter 0 for no tooltip."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Show tooltips",
+            "type": "pause_time",
+            "value": "0"
+          }
+        ],
+        "token": "bot-input-data"
+      },
+      {
+        "description": "Instruct the bot to go to a new page.",
+        "hasErrors": false,
+        "helpvideo": "",
+        "highlighted": false,
+        "machine_name": "WidgetDriverGoto",
+        "metadata": "",
+        "method": {
+          "driver": "driver.gotoV3180"
+        },
+        "modes": [
+          "driver"
+        ],
+        "name": "Go to page",
+        "original_name": "Go to page",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "description": [
+              "Enter a URL to go to. You can also plugin data from other steps to provide a URL. Enter (skip) to skip this step."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Enter URL",
+            "type": "current_url",
+            "value": "https://www.instagram.com/direct/inbox/"
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "description": [
+              "Check the box to stop Axiom retrieving session data from this URL's localstorage. This will prevent an extra page refresh but can prevent your session from loading fully."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Do not share localstorage",
+            "type": "special_character",
+            "value": false
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "description": [
+              "Check the box to open the URL in a new browser tab, the automation will automatically switch to running in the new tab."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Open in new tab",
+            "type": "special_character",
+            "value": false
+          }
+        ],
+        "token": ""
+      },
+      {
+        "description": "Instruct the bot to wait for the given number of milliseconds. Wait for loading events, animations, page rendering etc.",
+        "hasErrors": false,
+        "helpvideo": "lwfmZQHFfAs",
+        "machine_name": "WidgetDriverWait",
+        "metadata": "",
+        "method": {
+          "driver": "driver.wait"
+        },
+        "modes": [
+          "driver"
+        ],
+        "name": "Wait",
+        "original_name": "Wait",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [],
+            "help": [],
+            "image": "",
+            "name": "Set a time in milliseconds",
+            "type": "integer_required",
+            "value": "1500"
+          }
+        ],
+        "token": ""
+      },
+      {
+        "description": "Finish and trigger the bot's run!",
+        "hasErrors": false,
+        "helpvideo": "",
+        "machine_name": "WidgetBotComplete",
+        "metadata": "",
+        "method": {
+          "browser": "driver.internalRun"
+        },
+        "modes": [
+          "driver"
+        ],
+        "name": "Finish Interact with the UI",
+        "original_name": "Finish Interact with the UI",
+        "params": [],
+        "token": "all-interaction-data"
+      },
+      {
+        "description": "",
+        "hasErrors": false,
+        "helpvideo": "t5HAq5q5JJQ",
+        "highlighted": false,
+        "machine_name": "WidgetDeleteRowsFromGoogleSheet",
+        "metadata": "clear remove slice",
+        "method": {
+          "browser": "AxiomApiDeleteRowsFromGoogleSheet"
+        },
+        "modes": [
+          "browser"
+        ],
+        "name": "Profile",
+        "original_name": "Delete rows from a Google Sheet",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Select a google sheet to delete from, or paste its URL here."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Spreadsheet URL",
+            "sheetName": "IG DM automation",
+            "type": "spreadsheet_picker",
+            "value": "https://docs.google.com/spreadsheets/d/1x039ThUBcdzp7qsL8WVk3IuZo21h_pCiuaepEb1Qs8o"
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "1",
+            "description": [
+              "Enter the number of the first row to delete"
+            ],
+            "help": [],
+            "image": "",
+            "name": "First row to delete",
+            "type": "start_page",
+            "value": "1"
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "1",
+            "description": [
+              "Enter the number of the last row to delete. Everything between the first and last rows will also be deleted."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Last row to delete",
+            "type": "page_count",
+            "value": "1"
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Optionally specify a sheet name to delete from. Sheets are different tabs visible at the bottom of your google doc; enter the name that appears on the tab to specify the sheet. Leaving this blank will use the first sheet in the document."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Sheet name",
+            "type": "sheet_name_dropdown",
+            "value": "Profiles"
+          }
+        ],
+        "token": ""
+      },
+      {
+        "afterLoopUpdate": true,
+        "description": "Interact with a web page by clicking and typing via its user interface.",
+        "hasErrors": false,
+        "helpvideo": "",
+        "isLooping": true,
+        "machine_name": "WidgetBotCreate",
+        "metadata": "click enter text ui bot type fill form data loop",
+        "method": {
+          "driver": "DriverNoUrl"
+        },
+        "modes": [
+          "browser"
+        ],
+        "name": "Send a DM",
+        "original_name": "Interact with a page's interface",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "description": [
+              " "
+            ],
+            "help": [],
+            "image": "",
+            "name": "driverLaunchOptions",
+            "type": "",
+            "value": ""
+          },
+          {
+            "collapsible": 0,
+            "configurable": false,
+            "description": [
+              "Repeat for each item in another step's data."
+            ],
+            "help": [],
+            "image": "",
+            "maxTokens": 1,
+            "name": "Loop through data",
+            "tokenType": "bot_token",
+            "type": "bot_token",
+            "value": "[google-sheet-data]"
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "description": [
+              "Enter the time, in seconds, to show tooltips. Enter 0 for no tooltip."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Show tooltips",
+            "type": "pause_time",
+            "value": "0"
+          }
+        ],
+        "token": "bot-input-data_1"
+      },
+      {
+        "description": "Instruct the bot to click on a button, link, or any other clickable thing.",
+        "hasErrors": false,
+        "helpvideo": "l0Md7spP5Gs",
+        "highlighted": false,
+        "machine_name": "WidgetDriverClick",
+        "metadata": "right click rightclick",
+        "method": {
+          "driver": "driver.clickV3130"
+        },
+        "modes": [
+          "driver"
+        ],
+        "name": "Disable Notifications",
+        "original_name": "Click Element",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Click 'Select' to choose what the bot should click on."
+            ],
+            "help": [
+              {
+                "linkSrc": "https://axiom.ai/docs/selector-tool.html#single-selector",
+                "linkText": "learn more",
+                "name": "Updated Single Selector Tool with new custom selector feature - "
+              }
+            ],
+            "image": "",
+            "name": "Select",
+            "type": "selector_single",
+            "value": {
+              "class": "._a9--._a9_1",
+              "hierarchy": "div:nth-last-of-type(1) > button:nth-of-type(2)",
+              "id": "#",
+              "innerText": "Not Now",
+              "targetElement": "<button class='_a9-- _a9_1' tabindex='0'>Not Now</button>",
+              "targetParent": "<div class='_a9-z'><button class='_a9-- _a9_0' tabindex='0'>Turn On</button><button class='_a9-- _a9_1' tabindex='0'>Not Now</button></div>"
+            }
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": false,
+            "description": [
+              "Toggle off to perform a left click; toggle on to perform a right click."
+            ],
+            "help": [],
+            "image": null,
+            "name": "Left click | Right click",
+            "type": "toggle",
+            "value": false
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": false,
+            "description": [
+              "If checked & the selected element is not present on the page the automation will continue without an error."
+            ],
+            "help": [],
+            "image": null,
+            "name": "Optional click",
+            "type": "optional",
+            "value": true
+          }
+        ],
+        "token": ""
+      },
+      {
+        "description": "Instruct the bot to click on a button, link, or any other clickable thing.",
+        "hasErrors": false,
+        "helpvideo": "",
+        "highlighted": false,
+        "machine_name": "WidgetDriverClick",
+        "metadata": "right click rightclick",
+        "method": {
+          "driver": "driver.clickV3130"
+        },
+        "modes": [
+          "driver"
+        ],
+        "name": "Send message",
+        "original_name": "Click Element",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Click 'Select' to choose what the bot should click on."
+            ],
+            "help": [
+              {
+                "linkSrc": "https://axiom.ai/docs/selector-tool.html#single-selector",
+                "linkText": "learn more",
+                "name": "Updated Single Selector Tool with new custom selector feature - "
+              }
+            ],
+            "image": "",
+            "name": "Select",
+            "type": "selector_single",
+            "value": {
+              "class": ".x1i10hfl.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x972fbf.xcfux6l.x1qhh985.xm0m39n.xdl72j9.x2lah0s.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x2lwn1j.xeuugli.xexx8yu.x18d9i69.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x1lku1pv.x1a2a7pz.x6s0dn4.xjyslct.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x1ejq31n.xd10rxx.x1sy0etr.x17r0tee.x9f619.x9bdzbf.x1ypdohk.x78zum5.x1i0vuye.x1f6kntn.xwhw2v2.x10w6t97.xl56j7k.x17ydfre.x1swvt13.x1pi30zi.x1n2onr6.x2b8uid.xlyipyv.x87ps6o.x14atkfc.x1d5wrs8.x1tu34mt.xzloghq",
+              "hierarchy": "section > div > div > div > div:nth-of-type(1) > div:nth-of-type(2) > div > div > div > div:nth-last-of-type(1) > div",
+              "id": "#",
+              "innerText": "Send message",
+              "innerTextOnly": true,
+              "targetElement": "<div class='x1i10hfl xjqpnuy xa49m3k xqeqjp1 x2hbi6w x972fbf xcfux6l x1qhh985 xm0m39n xdl72j9 x2lah0s xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r x2lwn1j xeuugli xexx8yu x18d9i69 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1q0g3np x1lku1pv x1a2a7pz x6s0dn4 xjyslct x1lq5wgf xgqcy7u x30kzoy x9jhf4c x1ejq31n xd10rxx x1sy0etr x17r0tee x9f619 x9bdzbf x1ypdohk x78zum5 x1i0vuye x1f6kntn xwhw2v2 x10w6t97 xl56j7k x17ydfre x1swvt13 x1pi30zi x1n2onr6 x2b8uid xlyipyv x87ps6o x14atkfc x1d5wrs8 x1tu34mt xzloghq axiom-matched axiom-sel-selected-0' role='button' tabindex='0'>Send message</div>",
+              "targetParent": "<div class='x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w x6s0dn4 x1cnzs8'><div class='x1i10hfl xjqpnuy xa49m3k xqeqjp1 x2hbi6w x972fbf xcfux6l x1qhh985 xm0m39n xdl72j9 x2lah0s xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r x2lwn1j xeuugli xexx8yu x18d9i69 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1q0g3np x1lku1pv x1a2a7pz x6s0dn4 xjyslct x1lq5wgf xgqcy7u x30kzoy x9jhf4c x1ejq31n xd10rxx x1sy0etr x17r0tee x9f619 x9bdzbf x1ypdohk x78zum5 x1i0vuye x1f6kntn xwhw2v2 x10w6t97 xl56j7k x17ydfre x1swvt13 x1pi30zi x1n2onr6 x2b8uid xlyipyv x87ps6o x14atkfc x1d5wrs8 x1tu34mt xzloghq axiom-matched axiom-sel-selected-0' role='button' tabindex='0'>Send message</div></div>"
+            }
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": false,
+            "description": [
+              "Toggle off to perform a left click; toggle on to perform a right click."
+            ],
+            "help": [],
+            "image": null,
+            "name": "Left click | Right click",
+            "type": "toggle",
+            "value": false
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": false,
+            "description": [
+              "If checked & the selected element is not present on the page the automation will continue without an error."
+            ],
+            "help": [],
+            "image": null,
+            "name": "Optional click",
+            "type": "optional",
+            "value": false
+          }
+        ],
+        "token": ""
+      },
+      {
+        "description": "Instruct the bot to enter some text into a field.",
+        "hasErrors": false,
+        "helpvideo": "",
+        "machine_name": "WidgetDriverEnterText",
+        "metadata": "",
+        "method": {
+          "driver": "driver.enterText"
+        },
+        "modes": [
+          "driver"
+        ],
+        "name": "Search name",
+        "original_name": "Enter Text",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": false,
+            "default_value": "",
+            "description": [
+              "Click 'Select' to choose the text field that the bot should enter text into. If you do not select a field, the bot will type into whatever is selected by default."
+            ],
+            "help": [
+              {
+                "linkSrc": "https://axiom.ai/docs/selector-tool.html#single-selector",
+                "linkText": "learn more",
+                "name": "Updated Single Selector Tool with new custom selector feature - "
+              }
+            ],
+            "image": "h-text-field",
+            "name": "Select text field",
+            "type": "selector_single",
+            "value": {
+              "class": ".x1j8ye7u.x1rjkts5.x13z9klp.xjc6cxp.x5n08af.x1iyjqo2.xvs91rp.xklk4pu.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x1plvlek.xryxfnj.x1iorvi4.xn6708d.xjkvuk6.x1s3xk63.xlqc9nw.x8tigb1.x1ad04t7.x1glnyev.xs3hnx8.x7xwk5j.x1rheh84.x1ck6gwh.x175bfct.x1meze4m.x10eltez.x1qt4tve.x1s07b3s.xkq2eht.x1rvh84u.x11f1dot.xiga2ox.x1ii8w9m.x1serwwh.x178xt8z.xm81vs4.xso031l.xy80clv.x1ejq31n.xd10rxx.x1sy0etr.x17r0tee.x5ib6vp.xjbqb8w.xzd0ubt",
+              "hierarchy": "div:nth-of-type(2) > input",
+              "id": "#",
+              "innerText": "",
+              "targetElement": "<input autocomplete='off' class='x1j8ye7u x1rjkts5 x13z9klp xjc6cxp x5n08af x1iyjqo2 xvs91rp xklk4pu xdj266r x11i5rnm xat24cr x1mh8g0r x1plvlek xryxfnj x1iorvi4 xn6708d xjkvuk6 x1s3xk63 xlqc9nw x8tigb1 x1ad04t7 x1glnyev xs3hnx8 x7xwk5j x1rheh84 x1ck6gwh x175bfct x1meze4m x10eltez x1qt4tve x1s07b3s xkq2eht x1rvh84u x11f1dot xiga2ox x1ii8w9m x1serwwh x178xt8z xm81vs4 xso031l xy80clv x1ejq31n xd10rxx x1sy0etr x17r0tee x5ib6vp xjbqb8w xzd0ubt' placeholder='Search...' spellcheck='false' type='text' value='' name='queryBox' data-focus-visible-added=''>",
+              "targetParent": "<div class='x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x1uhb9sk x1plvlek xryxfnj x1iyjqo2 x2lwn1j xeuugli x1q0g3np x1a02dak xqjyukv x1qjc9v5 x1oa3qoh x1nhvcw1'><input autocomplete='off' class='x1j8ye7u x1rjkts5 x13z9klp xjc6cxp x5n08af x1iyjqo2 xvs91rp xklk4pu xdj266r x11i5rnm xat24cr x1mh8g0r x1plvlek xryxfnj x1iorvi4 xn6708d xjkvuk6 x1s3xk63 xlqc9nw x8tigb1 x1ad04t7 x1glnyev xs3hnx8 x7xwk5j x1rheh84 x1ck6gwh x175bfct x1meze4m x10eltez x1qt4tve x1s07b3s xkq2eht x1rvh84u x11f1dot xiga2ox x1ii8w9m x1serwwh x178xt8z xm81vs4 xso031l xy80clv x1ejq31n xd10rxx x1sy0etr x17r0tee x5ib6vp xjbqb8w xzd0ubt' placeholder='Search...' spellcheck='false' type='text' value='' name='queryBox' data-focus-visible-added=''><div></div></div>"
+            }
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Input the text to enter."
+            ],
+            "help": [],
+            "image": "h-text-input",
+            "name": "Text",
+            "type": "long_text",
+            "value": "[google-sheet-data?*&0]"
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "default_value": "0",
+            "description": [
+              "Delay between each key press in miliseconds."
+            ],
+            "help": [],
+            "image": "h-text-input",
+            "name": "Delay",
+            "type": "delay",
+            "value": "0"
+          }
+        ],
+        "token": ""
+      },
+      {
+        "description": "Instruct the bot to click on a button, link, or any other clickable thing.",
+        "hasErrors": false,
+        "helpvideo": "l0Md7spP5Gs",
+        "machine_name": "WidgetDriverClick",
+        "metadata": "right click rightclick",
+        "method": {
+          "driver": "driver.clickV3130"
+        },
+        "modes": [
+          "driver"
+        ],
+        "name": "Toggle selection",
+        "original_name": "Click Element",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Click 'Select' to choose what the bot should click on."
+            ],
+            "help": [
+              {
+                "linkSrc": "https://axiom.ai/docs/selector-tool.html#single-selector",
+                "linkText": "learn more",
+                "name": "Updated Single Selector Tool with new custom selector feature - "
+              }
+            ],
+            "image": "",
+            "name": "Select",
+            "type": "selector_single",
+            "value": {
+              "class": ".x1lliihq.x1n2onr6",
+              "hierarchy": "div:nth-of-type(3) > div > div > div > div:nth-of-type(1) > div > div > div:nth-last-of-type(1) > div > svg",
+              "id": "#",
+              "innerText": "Toggle selection",
+              "targetElement": "<svg aria-label='Toggle selection' class='x1lliihq x1n2onr6' color='rgb(245, 245, 245)' fill='rgb(245, 245, 245)' height='24' role='img' viewBox='0 0 24 24' width='24'><title>Toggle selection</title><circle cx='12.008' cy='12' fill='none' r='11.25' stroke='currentColor' stroke-linejoin='round' stroke-width='1.5'></circle></svg>",
+              "targetParent": "<div class='x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x16n37ib x1uhb9sk x1plvlek xryxfnj x1c4vz4f xs83m0k x1q0g3np xqjyukv x1qjc9v5 x1oa3qoh x1nhvcw1'><svg aria-label='Toggle selection' class='x1lliihq x1n2onr6' color='rgb(245, 245, 245)' fill='rgb(245, 245, 245)' height='24' role='img' viewBox='0 0 24 24' width='24'><title>Toggle selection</title><circle cx='12.008' cy='12' fill='none' r='11.25' stroke='currentColor' stroke-linejoin='round' stroke-width='1.5'></circle></svg></div>"
+            }
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": false,
+            "description": [
+              "Toggle off to perform a left click; toggle on to perform a right click."
+            ],
+            "help": [],
+            "image": null,
+            "name": "Left click | Right click",
+            "type": "toggle",
+            "value": false
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": false,
+            "description": [
+              "If checked & the selected element is not present on the page the automation will continue without an error."
+            ],
+            "help": [],
+            "image": null,
+            "name": "Optional click",
+            "type": "optional",
+            "value": false
+          }
+        ],
+        "token": ""
+      },
+      {
+        "description": "Instruct the bot to click on a button, link, or any other clickable thing.",
+        "hasErrors": false,
+        "helpvideo": "l0Md7spP5Gs",
+        "machine_name": "WidgetDriverClick",
+        "metadata": "right click rightclick",
+        "method": {
+          "driver": "driver.clickV3130"
+        },
+        "modes": [
+          "driver"
+        ],
+        "name": "Chat",
+        "original_name": "Click Element",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Click 'Select' to choose what the bot should click on."
+            ],
+            "help": [
+              {
+                "linkSrc": "https://axiom.ai/docs/selector-tool.html#single-selector",
+                "linkText": "learn more",
+                "name": "Updated Single Selector Tool with new custom selector feature - "
+              }
+            ],
+            "image": "",
+            "name": "Select",
+            "type": "selector_single",
+            "value": {
+              "class": ".x1i10hfl.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x972fbf.xcfux6l.x1qhh985.xm0m39n.xdl72j9.x2lah0s.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x2lwn1j.xeuugli.xexx8yu.x18d9i69.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x1lku1pv.x1a2a7pz.x6s0dn4.xjyslct.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x1ejq31n.xd10rxx.x1sy0etr.x17r0tee.x9f619.x9bdzbf.x1ypdohk.x78zum5.x1i0vuye.x1f6kntn.xwhw2v2.xl56j7k.x17ydfre.x1n2onr6.x2b8uid.xlyipyv.x87ps6o.x14atkfc.x1d5wrs8.xn3w4p2.x5ib6vp.xc73u3c.x1tu34mt.xzloghq",
+              "hierarchy": "div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > div > div > div > div > div > div > div:nth-of-type(1) > div > div:nth-last-of-type(1) > div",
+              "id": "#",
+              "innerText": "Chat",
+              "targetElement": "<div class='x1i10hfl xjqpnuy xa49m3k xqeqjp1 x2hbi6w x972fbf xcfux6l x1qhh985 xm0m39n xdl72j9 x2lah0s xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r x2lwn1j xeuugli xexx8yu x18d9i69 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1q0g3np x1lku1pv x1a2a7pz x6s0dn4 xjyslct x1lq5wgf xgqcy7u x30kzoy x9jhf4c x1ejq31n xd10rxx x1sy0etr x17r0tee x9f619 x9bdzbf x1ypdohk x78zum5 x1i0vuye x1f6kntn xwhw2v2 xl56j7k x17ydfre x1n2onr6 x2b8uid xlyipyv x87ps6o x14atkfc x1d5wrs8 xn3w4p2 x5ib6vp xc73u3c x1tu34mt xzloghq' role='button' tabindex='0'>Chat</div>",
+              "targetParent": "<div class='x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh xw7yly9 xktsk01 x1yztbdb x1d52u69 x1uhb9sk x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x1qjc9v5 x1oa3qoh x1nhvcw1'><div class='x1i10hfl xjqpnuy xa49m3k xqeqjp1 x2hbi6w x972fbf xcfux6l x1qhh985 xm0m39n xdl72j9 x2lah0s xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r x2lwn1j xeuugli xexx8yu x18d9i69 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1q0g3np x1lku1pv x1a2a7pz x6s0dn4 xjyslct x1lq5wgf xgqcy7u x30kzoy x9jhf4c x1ejq31n xd10rxx x1sy0etr x17r0tee x9f619 x9bdzbf x1ypdohk x78zum5 x1i0vuye x1f6kntn xwhw2v2 xl56j7k x17ydfre x1n2onr6 x2b8uid xlyipyv x87ps6o x14atkfc x1d5wrs8 xn3w4p2 x5ib6vp xc73u3c x1tu34mt xzloghq' role='button' tabindex='0'>Chat</div></div>"
+            }
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": false,
+            "description": [
+              "Toggle off to perform a left click; toggle on to perform a right click."
+            ],
+            "help": [],
+            "image": null,
+            "name": "Left click | Right click",
+            "type": "toggle",
+            "value": false
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": false,
+            "description": [
+              "If checked & the selected element is not present on the page the automation will continue without an error."
+            ],
+            "help": [],
+            "image": null,
+            "name": "Optional click",
+            "type": "optional",
+            "value": false
+          }
+        ],
+        "token": ""
+      },
+      {
+        "description": "Instruct the bot to enter some text into a field.",
+        "hasErrors": false,
+        "helpvideo": "5Tann3v3SaE",
+        "machine_name": "WidgetDriverEnterText",
+        "metadata": "",
+        "method": {
+          "driver": "driver.enterTextV3160"
+        },
+        "modes": [
+          "driver"
+        ],
+        "name": "Send Message",
+        "original_name": "Enter Text",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": false,
+            "default_value": "",
+            "description": [
+              "Click 'Select' to choose the text field that the bot should enter text into. If you do not select a field, the bot will type into whatever is selected by default."
+            ],
+            "help": [
+              {
+                "linkSrc": "https://axiom.ai/docs/selector-tool.html#single-selector",
+                "linkText": "learn more",
+                "name": "Updated Single Selector Tool with new custom selector feature - "
+              }
+            ],
+            "image": "h-text-field",
+            "name": "Select text field",
+            "type": "selector_single",
+            "value": {
+              "class": ".xat24cr.xdj266r",
+              "hierarchy": "div:nth-of-type(2) > div > div:nth-of-type(1) > p",
+              "id": "#",
+              "innerText": "",
+              "targetElement": "<p class='xat24cr xdj266r'><br></p>",
+              "targetParent": "<div aria-describedby='Message' aria-label='Message' class='xzsf02u x1a2a7pz x1n2onr6 x14wi4xw x1iyjqo2 x1gh3ibb xisnujt xeuugli x1odjw0f notranslate' contenteditable='true' role='textbox' spellcheck='true' tabindex='0' style='user-select: text; white-space: pre-wrap; word-break: break-word;' data-lexical-editor='true'><p class='xat24cr xdj266r'><br></p></div>"
+            }
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Input the text to enter."
+            ],
+            "help": [],
+            "image": "h-text-input",
+            "name": "Text",
+            "type": "long_text_required",
+            "value": "[google-sheet-data?*&1]"
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "default_value": "0",
+            "description": [
+              "Delay between each key press in miliseconds."
+            ],
+            "help": [],
+            "image": "h-text-input",
+            "name": "Delay",
+            "type": "delay",
+            "value": "0"
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "default_value": false,
+            "description": [
+              "Toggle on to skip clearing the text before entering. The value will be appended to whatever is already in the box."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Append to existing",
+            "type": "optional",
+            "value": false
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "default_value": [],
+            "description": [
+              "Record a sequence of characters to use instead of enter for line breaks. For example, record shift and enter for Instagram DMs."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Custom line break",
+            "type": "select_key",
+            "value": []
+          }
+        ],
+        "token": ""
+      },
+      {
+        "description": "Record a key press for the bot to execute. Multiple keys can be pressed at once.",
+        "hasErrors": false,
+        "helpvideo": "dl4jSmjNThc",
+        "machine_name": "WidgetDriverKeyDown",
+        "metadata": "",
+        "method": {
+          "driver": "driver.keydownV3120"
+        },
+        "modes": [
+          "driver"
+        ],
+        "name": "Press Key(s)",
+        "original_name": "Press Key(s)",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": [
+              "Enter"
+            ],
+            "description": [
+              "Click record, then press the keys you want the bot to press. You can record a sequence of keys.",
+              "The bot will enter these one by one, except for Ctrl, Alt, or Shift, which will be held down until the end of the sequence."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Key",
+            "type": "select_key",
+            "value": [
+              "Enter"
+            ]
+          },
+          {
+            "collapsible": 0,
+            "configurable": false,
+            "default_value": [],
+            "description": [
+              "The contents of the data will be entered as key presses (optional). This overwrites any recorded sequence."
+            ],
+            "help": [],
+            "image": "",
+            "maxTokens": 1,
+            "name": "Data",
+            "tokenType": "bot_token",
+            "type": "bot_token",
+            "value": []
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "||",
+            "description": [
+              "When using data, use this character to seperate individual key presses. Make sure this is present between each desired key press in the given data, or this step will not work properly."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Delimiter",
+            "type": "textfield",
+            "value": "||"
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "default_value": "10",
+            "description": [
+              "Set a delay between each key press (in milliseconds)."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Delay",
+            "type": "integer",
+            "value": "10"
+          }
+        ],
+        "token": ""
+      },
+      {
+        "description": "Finish and trigger the bot's run!",
+        "hasErrors": false,
+        "helpvideo": "",
+        "machine_name": "WidgetBotComplete",
+        "metadata": "",
+        "method": {
+          "browser": "driver.internalRun"
+        },
+        "modes": [
+          "driver"
+        ],
+        "name": "Finish Interact with the UI",
+        "original_name": "Finish Interact with the UI",
+        "params": [],
+        "token": "all-interaction-data_1"
+      },
+      {
+        "description": "Jump to a different step, use to create branches and loops.",
+        "hasErrors": false,
+        "helpvideo": "",
+        "highlighted": false,
+        "machine_name": "WidgetAlwaysJump",
+        "metadata": "loop",
+        "method": {
+          "browser": "AxiomApiAlwaysJump"
+        },
+        "modes": [
+          "browser"
+        ],
+        "name": "Move to the next line",
+        "original_name": "Jump to another step",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Enter the number of the step to jump to if the value is found. You cannot jump to sub steps, only whole steps."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Jump to step",
+            "type": "integer",
+            "value": "1"
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "20",
+            "description": [
+              "Maximum number of times this step should trigger in a single run."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Maximum cycles",
+            "type": "max_cycles",
+            "value": "50"
+          }
+        ],
+        "token": ""
+      },
+      {
+        "description": "",
+        "hasErrors": false,
+        "helpvideo": "5HMq_5bZyIM",
+        "machine_name": "WidgetWriteGoogleSheet",
+        "metadata": "spreadsheet",
+        "method": {
+          "browser": "AxiomApiUpdateGoogleSheetV3160"
+        },
+        "modes": [
+          "browser"
+        ],
+        "name": "Sent",
+        "original_name": "Write data to a Google Sheet",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Select a google sheet to write to, or paste its URL here."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Spreadsheet",
+            "sheetName": "IG DM automation",
+            "type": "spreadsheet_picker",
+            "value": "https://docs.google.com/spreadsheets/d/1x039ThUBcdzp7qsL8WVk3IuZo21h_pCiuaepEb1Qs8o"
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "description": [
+              "Leave blank to use the first sheet."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Sheet name",
+            "type": "sheet_name_dropdown",
+            "value": "Sent"
+          },
+          {
+            "collapsible": 0,
+            "configurable": false,
+            "description": [
+              "Select the data to write"
+            ],
+            "help": [],
+            "image": "",
+            "maxTokens": 1,
+            "name": "DATA",
+            "tokenType": "",
+            "type": "token",
+            "value": "[google-sheet-data]"
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "description": [
+              ""
+            ],
+            "help": [],
+            "image": "",
+            "name": "Write options",
+            "type": "google_sheet_write_options",
+            "value": {
+              "append": true,
+              "startingCell": ""
+            }
+          },
+          {
+            "collapsible": 1,
+            "configurable": true,
+            "default_value": "raw",
+            "description": [
+              "Select \"User Entered\" if you want to write formulas to the sheet."
+            ],
+            "help": [],
+            "image": null,
+            "name": "Write method",
+            "type": "radio_value_input_option",
+            "value": "raw"
+          }
+        ],
+        "token": ""
+      },
+      {
+        "description": "Jump to a different step, use to create branches and loops.",
+        "hasErrors": false,
+        "helpvideo": "",
+        "machine_name": "WidgetAlwaysJump",
+        "metadata": "loop",
+        "method": {
+          "browser": "AxiomApiAlwaysJump"
+        },
+        "modes": [
+          "browser"
+        ],
+        "name": "Move to the next line",
+        "original_name": "Jump to another step",
+        "params": [
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "",
+            "description": [
+              "Enter the number of the step to jump to if the value is found. You cannot jump to sub steps, only whole steps."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Jump to step",
+            "type": "integer",
+            "value": "1"
+          },
+          {
+            "collapsible": 0,
+            "configurable": true,
+            "default_value": "20",
+            "description": [
+              "Maximum number of times this step should trigger in a single run."
+            ],
+            "help": [],
+            "image": "",
+            "name": "Maximum cycles",
+            "type": "max_cycles",
+            "value": "50"
+          }
+        ],
+        "token": ""
+      }
+    ],
+    "headless": false,
+    "injector": {
+      "injector": "dom",
+      "magic_btn_status": true,
+      "selector": ""
+    },
+    "mode": "browser",
+    "noOutput": false,
+    "notifications": false,
+    "templateItem": {
+      "description": "Using a Google Sheet of Instagram users, send a personalised DM to each user and like their most recent post. Run this bot to increase engagement on your account.",
+      "difficulty": "Medium",
+      "machine_name": "TemplateStore16",
+      "modes": [
+        "browser"
+      ],
+      "name": "DM Instagram users and like their newest post",
+      "recipe_id": 16,
+      "time": "4 minutes"
+    },
+    "templateMode": false,
+    "templateStarted": true,
+    "tokens": null,
+    "viewport": null
+  },
+  "machine_name": "new_axiom",
+  "errors": [],
+  "color": null,
+  "creator_id": 92722,
+  "type": null
+}
